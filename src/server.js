@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 //file to execute server test calls
 
 require('dotenv').config();

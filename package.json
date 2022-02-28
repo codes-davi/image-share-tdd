@@ -17,5 +17,8 @@
     "mongoose": "^6.2.2",
     "nodemon": "^2.0.15",
     "supertest": "^6.2.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.10.0"
   }
 }

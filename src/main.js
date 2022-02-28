@@ -1,9 +1,9 @@
+/* eslint-disable no-undef */
 require('dotenv').config();
 const mongoose = require('mongoose');
 const express = require('express');
 const userController = require('./users/UserController');
 const app = express();
-const port = process.env.PORT;
 const uri = process.env.CONNECTION_STRING;
 
 app.use(express.urlencoded({extended: false}));
@@ -19,7 +19,7 @@ app.use('/', userController);
     } catch (error) {
         console.log(error);
     }
-})
+})();
 
 app.get('/', (req, res) => {
     res.sendStatus(200);
