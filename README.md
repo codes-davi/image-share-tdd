@@ -1,7 +1,7 @@
 # image-share-tdd
-Still working on it, image share rest-api using ExpressJS & MongoDB.
+Still working on it, image sharing rest-api using ExpressJS & MongoDB.
 
-Test Driven Development programming style.
+Test Driven Development.
 
 ![image](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 ![image](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)

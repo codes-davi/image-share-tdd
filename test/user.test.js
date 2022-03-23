@@ -4,7 +4,7 @@ const supertest = require('supertest');
 const request = supertest(app);
 
 //file globals
-const email = `tests.${Date.now().toString()}@not-real.com`;
+const email = 'tests.any@not-real.com';
 let user = { name: 'tester', email: email, password: `${Date.now()}` };
 
 beforeAll(()=>{
@@ -64,5 +64,45 @@ describe('Register a new user', () => {
         }).catch(err=>{
             fail(err);
         });
+    });
+});
+
+describe('Authentication', () => {
+    test('Should return a token when logged in', () => {
+        request
+            .post('/auth')
+            .send({ email: user.email, password: user.password })
+            .then(res => {
+                expect(res.statusCode).toEqual(200);
+                expect(res.body.token).toBeDefined();
+            }).catch(err => {
+                console.log(err);
+                fail(err);
+            });
+    });
+
+    test('Shouldnt log in if user is not registered', () => {
+        request
+            .post('/auth')
+            .send({ email: 'any_2@not-real.com', password: '0000' })
+            .then(res => {
+                expect(res.statusCode).toEqual(404);
+            }).catch(err => {
+                console.log(err);
+                fail(err);
+            });
+    });
+
+    test('Shouldnt log in if password is wrong', () => {
+        request
+            .post('/auth')
+            .send({ email: user.email, password: '0000' })
+            .then(res => {
+                expect(res.statusCode).toEqual(403);
+                expect(res.body.error).toEqual('Wrong password and/or email');
+            }).catch(err => {
+                console.log(err);
+                fail(err);
+            });
     });
 });
